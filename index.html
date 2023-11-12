@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Switch Data Push to MongoDB</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Toggle Switch Data Push to MongoDB</h1>
+    <label class="switch">
+        <input type="checkbox" id="toggleCheckbox">
+        <span class="slider round"></span>
+    </label>
+    <button onclick="toggleData()">Save Toggle Data</button>
+
+    <script>
+        async function toggleData() {
+            const toggleValue = document.getElementById('toggleCheckbox').checked;
+
+            try {
+                const response = await fetch('http://localhost:5000/toggleData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ toggleValue: toggleValue })
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error toggling data', error);
+            }
+        }
+    </script>
+</body>
+</html>
