@@ -1,0 +1,274 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        *{
+    margin:0px;
+    padding:0px;
+}
+
+.container{
+    height:100vh;
+    width:100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+} 
+
+#box{
+    height: 400px;
+    width:250px;  /* Fixed width */
+    border-bottom:2px solid black;
+    border-left:2px solid black;
+    border-right:2px solid black;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items:end;
+
+  
+    
+    
+}
+
+.water{ 
+    width:250px;  /* Fixed width */
+
+    height:300px; /* 4x */
+    background-color: #9edaf3;;
+    display: inline-block;
+    box-shadow: inset 0px -10px 16px 8px #82c8e4;
+
+}
+
+/* Water wave cc */
+svg {
+    display: block;
+    margin: 0 auto;
+   position: relative;
+   top:4px;
+    display: inline-block;
+    
+}
+
+.water{
+    display: flex;
+    flex-direction: row-reverse;
+}
+/* Buttons */
+
+button{
+    height:40px;
+    width:100px;
+    text-align: center;
+}
+        body {
+            /* background-color: #0000003b; */
+            margin: 50px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            background-color: #d1e2ff;
+
+        }
+
+        header nav p {
+            font-weight: bold;
+            font-size: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container {
+            height: 90vh;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* height: 100vh; */
+        }
+
+        #motor {
+            /* padding: 10px; */
+            width: 170px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* flex-direction: row-reverse; */
+
+        }
+
+        #motor p {
+            font-family: cursive;
+            font-size: larger;
+            /* display:inline; */
+        }
+
+        #motor span {}
+    </style>
+</head>
+
+<body>
+
+    <label class="switch">
+        <input type="checkbox" id="toggleSwitch">
+        <span class="slider"></span>
+    </label>
+
+    <button class="btn" id="button"></button>
+
+    <!-- <ul> -->
+        <% data.map(e=> { %>
+            <% if (e.isMotorOn==true) { %>
+                <script>
+                    alert("The motor is On!! please Switch On the Motor the Switch Off it Properly");
+                </script>
+                <div id="motor">
+                    <p>Motor is On </p> <span class="material-symbols-outlined" style='font-size:48px;color:red'>
+                        warning
+                    </span>
+
+                </div>
+               
+
+
+                <%} else { %>
+                    <p></p>
+                    <% } %>
+                        <!-- <a><%= e.isMotorOn %></a> -->
+
+
+                        <% }) %>
+
+                            <!-- <% data.forEach(item => { %>
+          <li><%= item.isMotorOn %>: <%= item.isMotorOn %></li>
+        <% }) %> -->
+                            <!-- <form action="/update" method="post">
+        <label for="documentId">Document ID:</label>
+        <input type="text" id="documentId" name="documentId" required>
+        <br>
+        <label for="booleanValue">Set Boolean Value to True:</label>
+        <input type="checkbox" id="booleanValue" name="booleanValue">
+        <br>
+        <button type="submit">Update</button>
+    </form> --> <div class="container">
+        
+        <div id="box">
+            <div class="water" id="water_level">
+                <span id="spn"></span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="50" viewBox="0 0 300 50">
+                <path fill="#87CEEB" opacity="0.7">
+                    <animate attributeName="d" dur="4s" repeatCount="indefinite" keyTimes="0;0.5;1" values="
+                    M0,50 C50,0 150,0 300,50 L300,50 L0,50 Z;
+                    M0,50 C50,50 150,50 300,50 L300,50 L0,50 Z;
+                    M0,50 C50,0 150,0 300,50 L300,50 L0,50 Z;
+                    " />
+                </path>
+            </svg>
+            
+        </div>
+  
+      
+    </div>
+                            <script>
+                                // Client-side JavaScript
+                                // document.getElementById('runFunctionBtn').addEventListener('click', function() {
+                                //     // Use AJAX or fetch to send a request to your Node.js server
+                                //     // You can replace this with your actual server endpoint
+                                //     fetch('/runFunction', {
+                                //         method: 'POST',
+                                //         headers: {
+                                //             'Content-Type': 'application/json',
+                                //         },
+                                //     })
+                                //     .then(response => response.json())
+                                //     .then(data => {
+                                //         console.log('Response from server:', data);
+                                //         // Handle the response if needed
+                                //     })
+                                //     .catch(error => {
+                                //         console.error('Error:', error);
+                                //     });
+                                // });
+                                var toglegatdata = document.getElementById("button");
+                                var toggleSwitch = document.getElementById('toggleSwitch');
+
+
+                                toglegatdata.addEventListener('click', function () {
+                                    if (this.click) {
+                                        fetch('/getdata', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            }
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                console.log('Response from server:', data);
+                                                // Handle the response if needed
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+
+                                    }
+                                })
+
+                                toggleSwitch.addEventListener('change', function () {
+                                    if (this.checked) {
+                                        fetch('/runFunction', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                console.log('Response from server:', data);
+                                                // Handle the response if needed
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                        console.log('Switch is ON');
+                                        // Perform actions when the switch is ON
+                                    } else {
+                                        fetch('/runFunction2', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                console.log('Response from server:', data);
+                                                // Handle the response if needed
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                        console.log('Switch is OFF');
+                                        // Perform actions when the switch is OFF
+                                    }
+                                });
+                                console.log("helll")
+                            </script>
+</body>
+
+</html>

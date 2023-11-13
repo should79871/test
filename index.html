@@ -3,37 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Switch Data Push to MongoDB</title>
+    <title>Water Tank Filling</title>
+    <link rel="stylesheet" href="index.css">
     <style>
-        /* Add your CSS styles here */
-    </style>
-</head>
-<body>
-    <h1>Toggle Switch Data Push to MongoDB</h1>
-    <label class="switch">
-        <input type="checkbox" id="toggleCheckbox">
-        <span class="slider round"></span>
-    </label>
-    <button onclick="toggleData()">Save Toggle Data</button>
 
-    <script>
-        async function toggleData() {
-            const toggleValue = document.getElementById('toggleCheckbox').checked;
-
-            try {
-                const response = await fetch('http://localhost:5000/toggleData', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ toggleValue: toggleValue })
-                });
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('Error toggling data', error);
-            }
+        body{
+            background-color: #0000003b;
         }
-    </script>
+        nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:80px;
+            background-color: #d1e2ff;
+
+        }
+        header nav p{
+            font-weight: bold;
+            font-size: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .container{
+            height:90vh;
+        }
+        </style>
+</head>
+<body> 
+    
+    <!-- #87CEEB; -->
+    <header>
+        <nav>
+            <p>Water Level In Tank</p>
+        </nav>
+    </header>
+    <div class="container">
+        
+        <div id="box">
+            <div class="water" id="water_level">
+                <span id="spn"></span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="50" viewBox="0 0 300 50">
+                <path fill="#87CEEB" opacity="0.7">
+                    <animate attributeName="d" dur="4s" repeatCount="indefinite" keyTimes="0;0.5;1" values="
+                    M0,50 C50,0 150,0 300,50 L300,50 L0,50 Z;
+                    M0,50 C50,50 150,50 300,50 L300,50 L0,50 Z;
+                    M0,50 C50,0 150,0 300,50 L300,50 L0,50 Z;
+                    " />
+                </path>
+            </svg>
+            
+        </div>
+  
+      
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
